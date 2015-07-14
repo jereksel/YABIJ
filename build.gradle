@@ -41,3 +41,5 @@ task wrapper(type: Wrapper) {
 compileJava.options.encoding = 'UTF-8'
 
 cobertura.coverageFormats = ['html', 'xml'] // coveralls plugin depends on xml format report
+
+cobertura.coverageExcludes = ['.*pl.jereksel.brainfuck.Main.*']
