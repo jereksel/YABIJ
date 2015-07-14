@@ -4,10 +4,10 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
-
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+
+import static org.junit.Assert.assertEquals;
 
 public class Tests {
 
@@ -37,10 +37,66 @@ public class Tests {
     }
 
     @Test
-    public void adding() {
+    public void helloWorld() {
         new BrainfuckInterpreter("++++++++++[>+++++++>++++++++++>+++>+<<<<-]>++.>+.+++++++..+++.>++.<<+++++++++++++++.>.+++.------.--------.>+.>.")
                 .interpret();
         assertEquals("Hello World!\n", outContent.toString());
+    }
+
+    @Test
+    //https://pl.wikipedia.org/wiki/Brainfuck#Dodawanie_2
+    public void adding() {
+
+        String program = "";
+
+        //2 - 50 in ASCII
+        for (int i = 1; i <= 50; i++) {
+            program += "+";
+        }
+
+        program += ">++++++[<-------->-]";
+
+
+        //3 - 51 in ASCII
+        for (int i = 1; i <= 51; i++) {
+            program += "+";
+        }
+
+        program += "[<+>-]<.";
+
+        new BrainfuckInterpreter(program)
+                .interpret();
+
+        assertEquals("5", outContent.toString());
+    }
+
+
+    @Test
+    //https://pl.wikipedia.org/wiki/Brainfuck#Mno.C5.BCenie
+    public void multiplying() {
+
+        String program = "";
+
+        //2 - 50 in ASCII
+        for (int i = 1; i <= 50; i++) {
+            program += "+";
+        }
+
+        program += ">";
+
+        //3 - 51 in ASCII
+        for (int i = 1; i <= 51; i++) {
+            program += "+";
+        }
+
+
+        program += ">++++++++[<------<------>>-]<<[>[>+>+<<-]>>[<<+>>-]<<<-]>>>++++++[<++++++++>-]<.";
+
+        new BrainfuckInterpreter(program)
+                .interpret();
+
+        assertEquals("6", outContent.toString());
+
     }
 
 }
