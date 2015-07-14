@@ -1,7 +1,20 @@
 apply plugin: 'java'
+apply plugin: 'cobertura'
+apply plugin: 'com.github.kt3k.coveralls'
 
 repositories {
     mavenCentral()
+}
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath 'net.saliman:gradle-cobertura-plugin:2.0.0' // cobertura plugin
+        classpath 'org.kt3k.gradle.plugin:coveralls-gradle-plugin:2.4.0'
+    }
 }
 
 
@@ -22,3 +35,5 @@ dependencies {
 
 
 compileJava.options.encoding = 'UTF-8'
+
+cobertura.coverageFormats = ['html', 'xml'] // coveralls plugin depends on xml format report
