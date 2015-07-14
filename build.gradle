@@ -2,21 +2,21 @@ apply plugin: 'java'
 apply plugin: 'cobertura'
 apply plugin: 'com.github.kt3k.coveralls'
 
-repositories {
-    mavenCentral()
-}
-
 buildscript {
     repositories {
         mavenCentral()
     }
 
     dependencies {
-        classpath 'net.saliman:gradle-cobertura-plugin:2.2.5' // cobertura plugin
+        classpath 'net.saliman:gradle-cobertura-plugin:2.2.8' // cobertura plugin
         classpath 'org.kt3k.gradle.plugin:coveralls-gradle-plugin:2.4.0'
     }
 }
 
+
+repositories {
+    mavenCentral()
+}
 
 jar {
     manifest {
@@ -28,11 +28,15 @@ jar {
     }
 }
 
-
 dependencies {
     testCompile('junit:junit:4.12')
+    testCompile('org.slf4j:slf4j-simple:1.6.1')
 }
 
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.5'
+}
 
 compileJava.options.encoding = 'UTF-8'
 
