@@ -98,7 +98,6 @@ public class Tests {
         assertEquals("6", outContent.toString());
 
     }
-
 }
 
 
