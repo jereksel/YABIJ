@@ -1,0 +1,24 @@
+apply plugin: 'java'
+
+repositories {
+    mavenCentral()
+}
+
+
+jar {
+    manifest {
+        attributes "Main-Class": "pl.jereksel.brainfuck.Main"
+    }
+
+    from {
+        configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
+
+
+dependencies {
+    testCompile('junit:junit:4.12')
+}
+
+
+compileJava.options.encoding = 'UTF-8'
